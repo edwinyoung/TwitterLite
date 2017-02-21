@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
     }
     */
 	@IBAction func onLoginButton(_ sender: UIButton) {
-		let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com/")!, consumerKey: "afJ3MdeEbZpxgTjVlgyL5WGM4", consumerSecret: "qFmicTOfUSR4nt6s7tZuvRFNdySO5L1ae4PyCaDLzDtdkgRiTK")
+		let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com/")!, consumerKey: "rS9HMtYqmj0I0k4i6iIDSu193", consumerSecret: "1nUAABF2vzteYLVo2nzCPXdSXThqSBHU8P9gUGrKvTJKktuWKK")
 		
 		twitterClient!.deauthorize()
 		twitterClient!.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterlite://oauth")!, scope: nil, success: {
