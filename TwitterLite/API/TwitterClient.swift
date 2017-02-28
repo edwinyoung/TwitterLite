@@ -12,6 +12,37 @@ import BDBOAuth1Manager
 class TwitterClient: BDBOAuth1SessionManager {
 	
 	static let shared = TwitterClient(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "x6DYcyPqb6xWLP6ARKZAciCN2", consumerSecret: "HgIt0Fa9tnouwcPWTQ4mhdwnFIwK8Pkkc756XXnhupLQEf9DEY")!
+	
+	var loginSuccess: (() -> ())?
+	var loginFailure: ((Error) -> ())?
+	
+	func login(success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+		loginSuccess = success
+		loginFailure = failure
+		deauthorize()
+		fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterlite://oauth"), scope: nil, success: {
+			(requestToken: BDBOAuth1Credential?) -> Void in
+			
+			let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")!
+			UIApplication.shared.openURL(url)
+			success()
+		}, failure: {(error: Error?) -> Void in
+			print("Error: \(error!.localizedDescription)")
+			self.loginFailure?(error!)
+		})
+	}
+	
+	func handleOpenUrl(url: URL) {
+		let requestToken = BDBOAuth1Credential(queryString: url.query!)
+		fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
+			
+			self.loginSuccess?()
+			
+		}, failure: { (error: Error?) in
+			print(error!.localizedDescription)
+			self.loginFailure?(error!)
+		})
+	}
 
 	func currentAccount() {
 		get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: {
