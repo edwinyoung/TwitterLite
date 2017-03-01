@@ -27,7 +27,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.rowHeight = UITableViewAutomaticDimension
-		tableView.estimatedRowHeight = 110
+		tableView.estimatedRowHeight = 140
 		
 		tableView.reloadData()
 	}
@@ -51,6 +51,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 		
 		let tweet = tweets[indexPath.row]
 		
+		cell.tweetText.text = tweet.text
+		cell.tweetTime.text = tweet.timestamp?.description
+		cell.retweetCountLabel.text = String(describing: tweet.retweetCount)
+		cell.favoriteCountLabel.text = String(describing: tweet.favoritesCount)
 		
 		return cell
 	}
