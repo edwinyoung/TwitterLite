@@ -122,35 +122,35 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="@aplusk Can't wait for your next movie #winning" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AD3-FR-D86">
-                                                    <rect key="frame" x="105" y="45.5" width="224.5" height="36"/>
+                                                    <rect key="frame" x="75" y="45.5" width="269.5" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="@handle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGB-3H-EAZ">
-                                                    <rect key="frame" x="105" y="26" width="252" height="14.5"/>
+                                                    <rect key="frame" x="75" y="26.5" width="282" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="1/1/1970" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-I0-6tg">
-                                                    <rect key="frame" x="306.5" y="8" width="50.5" height="16"/>
+                                                    <rect key="frame" x="306.5" y="8.5" width="50.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Crash Overload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMH-kI-1dR">
-                                                    <rect key="frame" x="105" y="8" width="111" height="18"/>
+                                                    <rect key="frame" x="75" y="8.5" width="111" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YAN-a3-vos">
-                                                    <rect key="frame" x="15" y="8" width="80" height="80"/>
+                                                    <rect key="frame" x="15" y="8.5" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="YAN-a3-vos" secondAttribute="height" multiplier="1:1" id="2ij-dP-AqV"/>
-                                                        <constraint firstAttribute="height" constant="80" id="Sn0-Ta-eZl"/>
-                                                        <constraint firstAttribute="width" constant="80" id="ZfR-jK-21S"/>
+                                                        <constraint firstAttribute="height" constant="50" id="Sn0-Ta-eZl"/>
+                                                        <constraint firstAttribute="width" constant="50" id="ZfR-jK-21S"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPj-n7-Zuo">
@@ -166,6 +166,7 @@
                                                 <constraint firstItem="IMH-kI-1dR" firstAttribute="top" secondItem="MnY-d1-VPI" secondAttribute="topMargin" id="4AZ-Ns-rss"/>
                                                 <constraint firstItem="AD3-FR-D86" firstAttribute="leading" secondItem="YAN-a3-vos" secondAttribute="trailing" constant="10" id="EMA-tb-UKU"/>
                                                 <constraint firstItem="zPj-n7-Zuo" firstAttribute="leading" secondItem="a85-OE-Vln" secondAttribute="trailing" constant="5" id="GUo-8b-nK7"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="YAN-a3-vos" secondAttribute="bottom" constant="5" id="HAx-dV-DLR"/>
                                                 <constraint firstItem="Hqi-iD-z5y" firstAttribute="leading" secondItem="rhr-hS-pQP" secondAttribute="trailing" constant="50" id="I2A-hS-8Xb"/>
                                                 <constraint firstItem="qEY-fl-QOY" firstAttribute="top" secondItem="AD3-FR-D86" secondAttribute="bottom" constant="23" id="LVI-aT-qlR"/>
                                                 <constraint firstItem="VGB-3H-EAZ" firstAttribute="leading" secondItem="YAN-a3-vos" secondAttribute="trailing" constant="10" id="OrJ-Op-j4D"/>
