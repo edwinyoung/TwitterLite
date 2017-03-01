@@ -40,7 +40,10 @@ class LoginViewController: UIViewController {
 			
 			self.performSegue(withIdentifier: "loginSegue", sender: nil)
 		}, failure: {(error: Error) in
-			print("Error: \(error.localizedDescription)")
+			print("LoginViewController: \(error.localizedDescription)")
+			for symbol in Thread.callStackSymbols {
+				print(symbol)
+			}
 		})
 	}
 

@@ -27,37 +27,51 @@ class TwitterClient: BDBOAuth1SessionManager {
 			UIApplication.shared.openURL(url)
 			success()
 		}, failure: {(error: Error?) -> Void in
-			print("Error: \(error!.localizedDescription)")
+			print("Twitter.login: \(error!.localizedDescription)")
 			self.loginFailure?(error!)
+			print(Thread.callStackSymbols)
 		})
+	}
+	
+	func logout() {
+		User.currentUser = nil
+		deauthorize()
+		NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
 	}
 	
 	func handleOpenUrl(url: URL) {
 		let requestToken = BDBOAuth1Credential(queryString: url.query!)
 		fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
 			
+			self.currentAccount(success: { (user: User) in
+				User.currentUser = user
+				self.loginSuccess?()
+			}, failure: { (error: NSError) in
+				self.loginFailure?(error)
+				print(Thread.callStackSymbols)
+			})
+			
 			self.loginSuccess?()
 			
 		}, failure: { (error: Error?) in
 			print(error!.localizedDescription)
 			self.loginFailure?(error!)
+			print(Thread.callStackSymbols)
 		})
 	}
 
-	func currentAccount() {
+	func currentAccount(success: @escaping (User) -> (), failure: @escaping (NSError) -> ()) {
 		get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: {
 			(task: URLSessionDataTask, response: Any?) in
 			let userDictionary = response as! NSDictionary
 			let user = User(dict: userDictionary)
 			
-			print("User: \(user.name)")
-			print(user.screenName!)
-			print(user.profileImageURL?.description)
-			print(user.blurb!)
+			success(user)
 			
 		}, failure: {
 			(task: URLSessionDataTask?, error: Error) in
-			print(error.localizedDescription)
+			failure(error as NSError)
+			print(Thread.callStackSymbols)
 		})
 	}
 	
@@ -71,6 +85,7 @@ class TwitterClient: BDBOAuth1SessionManager {
 		}, failure: {
 			(task: URLSessionDataTask?, error: Error) in
 			failure(error)
+			print(Thread.callStackSymbols)
 		})
 	}
 }
