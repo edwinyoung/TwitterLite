@@ -19,8 +19,11 @@ class TweetCell: UITableViewCell {
 	@IBOutlet weak var retweetCountLabel: UILabel!
 	@IBOutlet weak var favoriteCountLabel: UILabel!
 	
-	@IBOutlet weak var retweetImage: UIImageView!
-	@IBOutlet weak var favoriteImage: UIImageView!
+	@IBOutlet weak var retweetButton: UIButton!
+	@IBOutlet weak var favoriteButton: UIButton!
+	
+	var retweeted = false
+	var favorited = false
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -32,5 +35,30 @@ class TweetCell: UITableViewCell {
 		
 		// Configure the view for the selected state
 	}
+	
+	@IBAction func onRetweet(_ sender: UIButton) {
+		if retweeted == false {
+			retweetButton.setImage(UIImage(named: "retweet-active"), for: UIControlState.normal)
+			retweetCountLabel.text = "\(Int(retweetCountLabel.text!)! + 1)"
+			retweeted = true
+		} else {
+			retweetButton.setImage(UIImage(named: "retweet"), for: UIControlState.normal)
+			retweetCountLabel.text = "\(Int(retweetCountLabel.text!)! - 1)"
+			retweeted = false
+		}
+	}
+	
+	@IBAction func onFavorite(_ sender: UIButton) {
+		if favorited == false {
+			favoriteButton.setImage(UIImage(named: "favorite-active"), for: UIControlState.normal)
+			favoriteCountLabel.text = "\(Int(favoriteCountLabel.text!)! + 1)"
+			favorited = true
+		} else {
+			favoriteButton.setImage(UIImage(named: "favorite"), for: UIControlState.normal)
+			favoriteCountLabel.text = "\(Int(favoriteCountLabel.text!)! - 1)"
+			favorited = false
+		}
+	}
+	
 	
 }
