@@ -104,5 +104,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 	// Pass the selected object to the new view controller.
 	}
 	*/
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		// TODO: Pass tweet along to TweetDetailViewController
+	}
 	
 }

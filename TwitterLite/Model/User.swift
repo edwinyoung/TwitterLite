@@ -14,16 +14,29 @@ class User: NSObject {
 	var name: String?
 	var screenName: String?
 	var profileImageURL: URL?
+	var profileBannerImageURL: URL?
 	var blurb: String?
+	var followersCount: Int?
+	var followingCount: Int?
+	var tweetCount: Int?
 	
 	init(dict: NSDictionary) {
 		dictionary = dict
 		name = dict["name"] as? String
 		screenName = dict["screen_name"] as? String
 		blurb = dict["description"] as? String
+		followersCount = (dict["followers_count"] as? Int) ?? 0
+		followingCount = (dict["friends_count"] as? Int) ?? 0
+		tweetCount = (dict["statuses_count"] as? Int) ?? 0
+		
 		let profileImageURLString = dict["profile_image_url_https"] as? String
 		if profileImageURLString != nil {
 			profileImageURL = URL(string: profileImageURLString!)
+		}
+		
+		let profileBannerImageURLString = dict["profile_background_image_url_https"] as? String
+		if profileBannerImageURLString != nil {
+			profileBannerImageURL = URL(string: profileBannerImageURLString!)
 		}
 	}
 	
