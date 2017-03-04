@@ -37,6 +37,44 @@ class Tweet: NSObject {
 		}
 	}
 	
+	var timestampString: String? {
+		get {
+			if self.timestamp != nil {
+				let timeInterval = timestamp?.timeIntervalSinceNow
+				
+				// Turn timeTweetPostedAgo into seconds, minutes, hours, days, or years
+				var rawTime = Int(timeInterval!)
+				var timeAgo: Int = 0
+				var timeChar = ""
+				
+				rawTime = rawTime * (-1)
+				
+				// Figure out time ago
+				if (rawTime <= 60) { // SECONDS
+					timeAgo = rawTime
+					timeChar = "s"
+				} else if ((rawTime/60) <= 60) { // MINUTES
+					timeAgo = rawTime/60
+					timeChar = "m"
+				} else if (rawTime/60/60 <= 24) { // HOURS
+					timeAgo = rawTime/60/60
+					timeChar = "h"
+				} else if (rawTime/60/60/24 <= 365) { // DAYS
+					timeAgo = rawTime/60/60/24
+					timeChar = "d"
+				} else if (rawTime/(3153600) <= 1) { // YEARS
+					timeAgo = rawTime/60/60/24/365
+					timeChar = "y"
+				}
+				
+				return "\(timeAgo)\(timeChar)"
+				
+			} else {
+				return ""
+			}
+		}
+	}
+	
 	class func tweetsWithArray(dicts: [NSDictionary]) -> [Tweet] {
 		var tweets = [Tweet]()
 		for dict in dicts {

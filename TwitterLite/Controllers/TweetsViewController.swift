@@ -53,42 +53,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 		cell.userDisplayName.text = tweet.user?.name
 		cell.userTwitterHandle.text = "@" + (tweet.user?.screenName)!
 		cell.tweetText.text = tweet.text
-		cell.tweetTime.text = calculateTimeStamp(timeTweetPostedAgo: (tweet.timestamp?.timeIntervalSinceNow)!)
+		cell.tweetTime.text = tweet.timestampString
 		cell.retweetCountLabel.text = String(describing: tweet.retweetCount)
 		cell.favoriteCountLabel.text = String(describing: tweet.favoritesCount)
 		
 		cell.userProfileImage.setImageWith((tweet.user?.profileImageURL)!)
 		
 		return cell
-	}
-	
-	func calculateTimeStamp(timeTweetPostedAgo: TimeInterval) -> String {
-		// Turn timeTweetPostedAgo into seconds, minutes, hours, days, or years
-		var rawTime = Int(timeTweetPostedAgo)
-		var timeAgo: Int = 0
-		var timeChar = ""
-		
-		rawTime = rawTime * (-1)
-		
-		// Figure out time ago
-		if (rawTime <= 60) { // SECONDS
-			timeAgo = rawTime
-			timeChar = "s"
-		} else if ((rawTime/60) <= 60) { // MINUTES
-			timeAgo = rawTime/60
-			timeChar = "m"
-		} else if (rawTime/60/60 <= 24) { // HOURS
-			timeAgo = rawTime/60/60
-			timeChar = "h"
-		} else if (rawTime/60/60/24 <= 365) { // DAYS
-			timeAgo = rawTime/60/60/24
-			timeChar = "d"
-		} else if (rawTime/(3153600) <= 1) { // YEARS
-			timeAgo = rawTime/60/60/24/365
-			timeChar = "y"
-		}
-		
-		return "\(timeAgo)\(timeChar)"
 	}
 	
 	@IBAction func onLogoutButton(_ sender: UIButton) {
