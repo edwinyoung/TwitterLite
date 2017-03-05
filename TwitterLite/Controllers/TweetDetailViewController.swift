@@ -24,6 +24,8 @@ class TweetDetailViewController: UIViewController {
 	@IBOutlet weak var retweetCount: UILabel!
 	@IBOutlet weak var favoriteCount: UILabel!
 	
+	@IBOutlet weak var userProfileButton: UIButton!
+	
 	var retweeted = false
 	var favorited = false
 	
@@ -107,8 +109,9 @@ class TweetDetailViewController: UIViewController {
 		if segue.identifier == "ReplySegue" {
 			let composeViewController = segue.destination as! ComposeViewController
 			
-		} else if segue.identifier == "ComposeTweetSegue" {
-			
+		} else if segue.identifier == "ProfileDetailSegue" {
+			let profileViewController = segue.destination as! ProfileViewController
+			profileViewController.user = tweet.user
 		}
 	}
 	

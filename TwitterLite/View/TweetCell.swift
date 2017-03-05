@@ -23,12 +23,15 @@ class TweetCell: UITableViewCell {
 	@IBOutlet weak var retweetButton: UIButton!
 	@IBOutlet weak var favoriteButton: UIButton!
 	
+	@IBOutlet weak var userProfileButton: UIButton!
+	
 	var retweeted = false
 	var favorited = false
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		// Initialization code
+		userProfileImage.isUserInteractionEnabled = true
 		
 		if retweeted == true {
 			retweetButton.setImage(UIImage(named: "retweet-active"), for: UIControlState.normal)

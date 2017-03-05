@@ -81,19 +81,23 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 	*/
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		// TODO: Pass tweet along to TweetDetailViewController
-		let cell = sender as! UITableViewCell
-		let indexPath = tableView.indexPath(for: cell)
-		let tweet = tweets![indexPath!.row]
+		
 		
 		let backButton = UIBarButtonItem()
 		backButton.title = "Back"
 		navigationItem.backBarButtonItem = backButton
 		
 		if segue.identifier == "TweetDetailSegue" {
+			let cell = sender as! TweetCell
+			let tweet = cell.tweet
+			
 			let detailViewController = segue.destination as! TweetDetailViewController
 			detailViewController.tweet = tweet
-		} else if segue.identifier == "ComposeTweetSegue" {
+		} else if segue.identifier == "ProfileDetailSegue" {
+			let tweet = tweets[0]
 			
+			let profileViewController = segue.destination as! ProfileViewController
+			profileViewController.user = tweet.user!
 		}
 	}
 	
