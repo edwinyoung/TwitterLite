@@ -49,6 +49,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 		let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
 		
 		let tweet = tweets[indexPath.row]
+		cell.tweet = tweet
 		
 		cell.userDisplayName.text = tweet.user?.name
 		cell.userTwitterHandle.text = "@" + (tweet.user?.screenName)!
@@ -80,6 +81,20 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 	*/
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		// TODO: Pass tweet along to TweetDetailViewController
+		let cell = sender as! UITableViewCell
+		let indexPath = tableView.indexPath(for: cell)
+		let tweet = tweets![indexPath!.row]
+		
+		let backButton = UIBarButtonItem()
+		backButton.title = "Back"
+		navigationItem.backBarButtonItem = backButton
+		
+		if segue.identifier == "TweetDetailSegue" {
+			let detailViewController = segue.destination as! TweetDetailViewController
+			detailViewController.tweet = tweet
+		} else if segue.identifier == "ComposeTweetSegue" {
+			
+		}
 	}
 	
 }

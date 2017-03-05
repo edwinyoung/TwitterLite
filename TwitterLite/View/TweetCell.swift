@@ -9,6 +9,7 @@
 import UIKit
 
 class TweetCell: UITableViewCell {
+	var tweet: Tweet!
 	
 	@IBOutlet weak var userProfileImage: UIImageView!
 	@IBOutlet weak var userDisplayName: UILabel!
@@ -40,7 +41,6 @@ class TweetCell: UITableViewCell {
 		} else {
 			favoriteButton.setImage(UIImage(named: "favorite"), for: UIControlState.normal)
 		}
-
 	}
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {

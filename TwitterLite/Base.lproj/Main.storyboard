@@ -192,6 +192,7 @@
                                             <outlet property="userDisplayName" destination="IMH-kI-1dR" id="RUe-0g-LaP"/>
                                             <outlet property="userProfileImage" destination="YAN-a3-vos" id="zFh-Ce-nAK"/>
                                             <outlet property="userTwitterHandle" destination="VGB-3H-EAZ" id="DOa-Uh-e98"/>
+                                            <segue destination="8H2-Ne-31A" kind="show" identifier="TweetDetailSegue" id="Jx7-Rw-4GN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -229,7 +230,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="di8-cY-tbd" id="1FD-7q-lMj"/>
-                        <segue destination="8H2-Ne-31A" kind="show" identifier="TweetDetailSegue" id="LpM-P4-Pcr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFy-c8-6cC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -249,24 +249,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Compose" id="kKG-ZD-jTN">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="azE-b7-wJN">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="N35-Ba-hXC">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Compose" id="kKG-ZD-jTN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8vP-ku-nqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2838" y="88"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="78a-iI-sDp">
             <objects>
-                <viewController id="1sk-ft-awe" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="1sk-ft-awe" customClass="ProfileViewController" customModule="TwitterLite" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FA2-3Z-My3"/>
                         <viewControllerLayoutGuide type="bottom" id="vUD-Ik-ofC"/>
@@ -279,15 +271,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Profile" id="1UY-TW-AL0">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="U6Z-2m-QSj">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OhX-hB-7Pq">
-                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Back"/>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Profile" id="1UY-TW-AL0"/>
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-wQ-fjx">
@@ -378,8 +362,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="70" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUq-Bp-czu">
-                                <rect key="frame" x="180" y="168" width="16" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXY-MY-kYw">
+                                <rect key="frame" x="260" y="167" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -389,18 +373,29 @@
                                 <rect key="frame" x="145" y="160" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="retweet"/>
+                                <connections>
+                                    <action selector="onRetweet:" destination="8H2-Ne-31A" eventType="touchUpInside" id="I3Q-wN-bmP"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXY-MY-kYw">
-                                <rect key="frame" x="260" y="167" width="16" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="70" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUq-Bp-czu">
+                                <rect key="frame" x="180" y="168" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ2-ME-vtk">
+                                <rect key="frame" x="70" y="160" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="reply"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90d-6Z-cC5">
                                 <rect key="frame" x="225" y="160" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="favorite"/>
+                                <connections>
+                                    <action selector="onFavorite:" destination="8H2-Ne-31A" eventType="touchUpInside" id="ZAZ-py-r3A"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" fixedFrame="YES" text="@aplusk Can't wait for your next movie #winning" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BM2-J2-Q0u">
                                 <rect key="frame" x="70" y="111" width="269.5" height="36"/>
@@ -434,25 +429,11 @@
                                 <rect key="frame" x="10" y="72" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reply" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-NO-wGQ">
-                                <rect key="frame" x="70" y="160" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Details" id="4DI-XT-FrF">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="uxZ-M1-4s1">
-                            <inset key="imageInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SYS-jd-PJ2">
-                                <rect key="frame" x="16" y="3" width="65" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="JIX-ls-At2">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2UA-ff-deE">
                                 <rect key="frame" x="319" y="2" width="40" height="40"/>
@@ -465,6 +446,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="favoriteButton" destination="9bC-Cf-c7q" id="EVP-D4-bb8"/>
+                        <outlet property="favoriteCount" destination="mXY-MY-kYw" id="2Mo-CL-D1T"/>
+                        <outlet property="replyButton" destination="90d-6Z-cC5" id="WH4-hV-8BG"/>
+                        <outlet property="retweetButton" destination="pZ2-ME-vtk" id="UBa-vw-xMz"/>
+                        <outlet property="retweetCount" destination="aUq-Bp-czu" id="JPD-WC-3Gz"/>
+                        <outlet property="tweetText" destination="BM2-J2-Q0u" id="HnH-O2-c30"/>
+                        <outlet property="tweetTime" destination="DaG-MH-MwL" id="CQr-cx-9IR"/>
+                        <outlet property="userDisplayName" destination="Vpf-k0-0Fk" id="X0D-vn-asr"/>
+                        <outlet property="userProfileImage" destination="O9p-tz-R4d" id="PxU-B0-SFD"/>
+                        <outlet property="userTwitterHandle" destination="apV-gR-W95" id="MQk-x4-qxf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZU-jF-Had" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -496,6 +489,6 @@
         <image name="retweet" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tMh-DH-pPI"/>
+        <segue reference="FCw-hc-k6J"/>
     </inferredMetricsTieBreakers>
 </document>
