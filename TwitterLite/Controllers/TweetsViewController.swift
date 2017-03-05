@@ -57,6 +57,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 		cell.retweetCountLabel.text = String(describing: tweet.retweetCount)
 		cell.favoriteCountLabel.text = String(describing: tweet.favoritesCount)
 		
+		cell.favorited = tweet.favorited!
+		cell.retweeted = tweet.retweeted!
+		
 		cell.userProfileImage.setImageWith((tweet.user?.profileImageURL)!)
 		
 		return cell

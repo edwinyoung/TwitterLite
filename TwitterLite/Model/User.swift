@@ -11,6 +11,7 @@ import UIKit
 class User: NSObject {
 	
 	var dictionary: NSDictionary?
+	var id: Int?
 	var name: String?
 	var screenName: String?
 	var profileImageURL: URL?
@@ -22,6 +23,7 @@ class User: NSObject {
 	
 	init(dict: NSDictionary) {
 		dictionary = dict
+		id = (dict["id"] as? Int) ?? 0
 		name = dict["name"] as? String
 		screenName = dict["screen_name"] as? String
 		blurb = dict["description"] as? String
@@ -34,7 +36,7 @@ class User: NSObject {
 			profileImageURL = URL(string: profileImageURLString!)
 		}
 		
-		let profileBannerImageURLString = dict["profile_background_image_url_https"] as? String
+		let profileBannerImageURLString = dict["profile_banner_url"] as? String
 		if profileBannerImageURLString != nil {
 			profileBannerImageURL = URL(string: profileBannerImageURLString!)
 		}

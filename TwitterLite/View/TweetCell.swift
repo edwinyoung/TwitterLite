@@ -28,6 +28,19 @@ class TweetCell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		// Initialization code
+		
+		if retweeted == true {
+			retweetButton.setImage(UIImage(named: "retweet-active"), for: UIControlState.normal)
+		} else {
+			retweetButton.setImage(UIImage(named: "retweet"), for: UIControlState.normal)
+		}
+		
+		if favorited == true {
+			favoriteButton.setImage(UIImage(named: "favorite-active"), for: UIControlState.normal)
+		} else {
+			favoriteButton.setImage(UIImage(named: "favorite"), for: UIControlState.normal)
+		}
+
 	}
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
