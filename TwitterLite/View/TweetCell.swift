@@ -53,6 +53,7 @@ class TweetCell: UITableViewCell {
 		if retweeted == false {
 			retweetButton.setImage(UIImage(named: "retweet-active"), for: UIControlState.normal)
 			retweetCountLabel.text = "\(Int(retweetCountLabel.text!)! + 1)"
+			TwitterClient.shared.retweet(id: tweet.id)
 			retweeted = true
 		} else {
 			retweetButton.setImage(UIImage(named: "retweet"), for: UIControlState.normal)

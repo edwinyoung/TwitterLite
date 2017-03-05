@@ -39,6 +39,20 @@ class TwitterClient: BDBOAuth1SessionManager {
 		NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
 	}
 	
+	func retweet(id: Int?) {
+		if id != nil {
+			post("1.1/statuses/retweet/\(id!).json", parameters: nil, progress: nil, success: {
+				(task: URLSessionDataTask, response: Any?) in
+				
+			}, failure: {
+				(task: URLSessionDataTask?, error: Error) in
+				print("Tweet ID: \(id!)")
+				print(error.localizedDescription)
+				print(Thread.callStackSymbols)
+			})
+		}
+	}
+	
 	func handleOpenUrl(url: URL) {
 		let requestToken = BDBOAuth1Credential(queryString: url.query!)
 		fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
