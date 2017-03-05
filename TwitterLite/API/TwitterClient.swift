@@ -53,6 +53,34 @@ class TwitterClient: BDBOAuth1SessionManager {
 		}
 	}
 	
+	func favorite(id: Int?) {
+		if id != nil {
+			post("1.1/favorites/create.json?id=\(id!)", parameters: nil, progress: nil, success: {
+				(task: URLSessionDataTask, response: Any?) in
+				
+			}, failure: {
+				(task: URLSessionDataTask?, error: Error) in
+				print("Tweet ID: \(id!)")
+				print(error.localizedDescription)
+				print(Thread.callStackSymbols)
+			})
+		}
+	}
+	
+	func unfavorite(id: Int?) {
+		if id != nil {
+			post("1.1/favorites/destroy.json?id=\(id!)", parameters: nil, progress: nil, success: {
+				(task: URLSessionDataTask, response: Any?) in
+				
+			}, failure: {
+				(task: URLSessionDataTask?, error: Error) in
+				print("Tweet ID: \(id!)")
+				print(error.localizedDescription)
+				print(Thread.callStackSymbols)
+			})
+		}
+	}
+	
 	func handleOpenUrl(url: URL) {
 		let requestToken = BDBOAuth1Credential(queryString: url.query!)
 		fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
@@ -73,7 +101,7 @@ class TwitterClient: BDBOAuth1SessionManager {
 			print(Thread.callStackSymbols)
 		})
 	}
-
+	
 	func currentAccount(success: @escaping (User) -> (), failure: @escaping (NSError) -> ()) {
 		get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: {
 			(task: URLSessionDataTask, response: Any?) in

@@ -79,10 +79,12 @@ class TweetDetailViewController: UIViewController {
 		if favorited == false {
 			favoriteButton.setImage(UIImage(named: "favorite-active"), for: UIControlState.normal)
 			favoriteCount.text = "\(Int(favoriteCount.text!)! + 1)"
+			TwitterClient.shared.favorite(id: tweet.id)
 			favorited = true
 		} else {
 			favoriteButton.setImage(UIImage(named: "favorite"), for: UIControlState.normal)
 			favoriteCount.text = "\(Int(favoriteCount.text!)! - 1)"
+			TwitterClient.shared.unfavorite(id: tweet.id)
 			favorited = false
 		}
 	}
