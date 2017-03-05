@@ -98,6 +98,19 @@ class TweetDetailViewController: UIViewController {
 	// Pass the selected object to the new view controller.
 	}
 	*/
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		
+		let backButton = UIBarButtonItem()
+		backButton.title = "Cancel"
+		navigationItem.backBarButtonItem = backButton
+		
+		if segue.identifier == "ReplySegue" {
+			let composeViewController = segue.destination as! ComposeViewController
+			
+		} else if segue.identifier == "ComposeTweetSegue" {
+			
+		}
+	}
 	
 	
 }

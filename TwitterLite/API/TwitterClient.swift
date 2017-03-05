@@ -81,6 +81,31 @@ class TwitterClient: BDBOAuth1SessionManager {
 		}
 	}
 	
+	func tweet(text: String, reply_id: Int?) {
+		let urlEncodedText = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+		if reply_id != nil {
+			post("1.1/statuses/update.json?status=\(urlEncodedText!)&in_reply_to_status_id=\(reply_id!)", parameters: nil, progress: nil, success: {
+				(task: URLSessionDataTask, response: Any?) in
+				
+			}, failure: {
+				(task: URLSessionDataTask?, error: Error) in
+				print("Tweet ID: \(urlEncodedText!)")
+				print(error.localizedDescription)
+				print(Thread.callStackSymbols)
+			})
+		} else {
+			post("1.1/statuses/update.json?status=\(urlEncodedText!)", parameters: nil, progress: nil, success: {
+				(task: URLSessionDataTask, response: Any?) in
+				
+			}, failure: {
+				(task: URLSessionDataTask?, error: Error) in
+				print("Tweet ID: \(urlEncodedText!)")
+				print(error.localizedDescription)
+				print(Thread.callStackSymbols)
+			})
+		}
+	}
+	
 	func handleOpenUrl(url: URL) {
 		let requestToken = BDBOAuth1Credential(queryString: url.query!)
 		fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
