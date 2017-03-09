@@ -82,7 +82,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ify-55-kY6" id="MnY-d1-VPI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="70" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9B-14-bQ9">
@@ -230,10 +230,10 @@
                                 <rect key="frame" x="319" y="2" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="compose-tweet"/>
+                                <connections>
+                                    <segue destination="yqr-Vi-A1C" kind="show" identifier="ComposeTweetSegue" id="pFn-HZ-fme"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="yqr-Vi-A1C" kind="show" identifier="ComposeTweetSegue" id="tMh-DH-pPI"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -256,20 +256,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VEi-pT-Col">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VEi-pT-Col">
                                 <rect key="frame" x="16" y="72" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="125-Bc-DUf"/>
+                                    <constraint firstAttribute="width" secondItem="VEi-pT-Col" secondAttribute="height" multiplier="1:1" id="5vC-Fb-wgu"/>
+                                    <constraint firstAttribute="width" constant="48" id="zTE-CD-wwp"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Crash Overload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFh-OW-kL4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crash Overload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFh-OW-kL4">
                                 <rect key="frame" x="72" y="72" width="119" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@handle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUX-Zb-Hqc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@handle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUX-Zb-Hqc">
                                 <rect key="frame" x="72" y="93" width="57" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -283,8 +285,29 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="VFh-OW-kL4" secondAttribute="trailing" constant="5" id="1eS-6L-QVu"/>
+                            <constraint firstItem="VFh-OW-kL4" firstAttribute="leading" secondItem="VEi-pT-Col" secondAttribute="trailing" constant="8" id="8m0-zn-bcL"/>
+                            <constraint firstItem="uUX-Zb-Hqc" firstAttribute="top" secondItem="VFh-OW-kL4" secondAttribute="bottom" id="XeB-fA-X8m"/>
+                            <constraint firstItem="VFh-OW-kL4" firstAttribute="top" secondItem="h69-El-84t" secondAttribute="bottom" constant="8" id="fxW-Wy-Wk9"/>
+                            <constraint firstItem="VEi-pT-Col" firstAttribute="top" secondItem="h69-El-84t" secondAttribute="bottom" constant="8" id="mP7-du-e4K"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="uUX-Zb-Hqc" secondAttribute="trailing" constant="5" id="tzm-le-OMb"/>
+                            <constraint firstItem="VEi-pT-Col" firstAttribute="leading" secondItem="33Z-rI-uC1" secondAttribute="leadingMargin" id="yHd-Ds-BFq"/>
+                            <constraint firstItem="uUX-Zb-Hqc" firstAttribute="leading" secondItem="VEi-pT-Col" secondAttribute="trailing" constant="8" id="ynq-6F-6cc"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Compose" id="kKG-ZD-jTN"/>
+                    <navigationItem key="navigationItem" title="Compose" id="kKG-ZD-jTN">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="c75-dk-epU">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="s34-0T-LSX">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tweet"/>
+                                <connections>
+                                    <action selector="onTweet:" destination="yqr-Vi-A1C" eventType="touchUpInside" id="Fpt-7J-HW2"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tweetText" destination="yYm-Sn-Y7w" id="XNx-zH-XOz"/>
                         <outlet property="userDisplayName" destination="VFh-OW-kL4" id="eEA-7A-Uc9"/>
@@ -538,7 +561,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZU-jF-Had" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1975" y="856"/>
+            <point key="canvasLocation" x="1441" y="908"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gSD-ra-I2p">
@@ -567,6 +590,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ceP-IC-Slx"/>
-        <segue reference="PbY-Tg-H7i"/>
+        <segue reference="pFn-HZ-fme"/>
     </inferredMetricsTieBreakers>
 </document>

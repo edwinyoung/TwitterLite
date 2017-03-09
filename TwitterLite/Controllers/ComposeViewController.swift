@@ -15,11 +15,28 @@ class ComposeViewController: UIViewController {
 	@IBOutlet weak var userTwitterHandle: UILabel!
 	@IBOutlet weak var tweetText: UITextView!
 	
+	var prevViewController = ""
+	var replyUserHandle = ""
+	var replyTweetId = -1
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		// Do any additional setup after loading the view.
+		let user = User.currentUser!
+		
+		userDisplayName.text = user.name!
+		userTwitterHandle.text = "@" + user.screenName!
+		
+		userProfileImage.setImageWith(user.profileImageURL!)
+		
+		if replyUserHandle != "" {
+			tweetText.text = replyUserHandle
+		} else {
+			tweetText.text = ""
+		}
+		
+		tweetText.becomeFirstResponder()
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -37,5 +54,9 @@ class ComposeViewController: UIViewController {
 	// Pass the selected object to the new view controller.
 	}
 	*/
+	@IBAction func onTweet(_ sender: UIButton) {
+		TwitterClient.shared.tweet(text: tweetText.text)
+		self.navigationController!.popViewController(animated: true)
+	}
 	
 }

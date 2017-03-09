@@ -81,28 +81,12 @@ class TwitterClient: BDBOAuth1SessionManager {
 		}
 	}
 	
-	func tweet(text: String, reply_id: Int?) {
-		let urlEncodedText = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-		if reply_id != nil {
-			post("1.1/statuses/update.json?status=\(urlEncodedText!)&in_reply_to_status_id=\(reply_id!)", parameters: nil, progress: nil, success: {
-				(task: URLSessionDataTask, response: Any?) in
-				
-			}, failure: {
-				(task: URLSessionDataTask?, error: Error) in
-				print("Tweet ID: \(urlEncodedText!)")
-				print(error.localizedDescription)
-				print(Thread.callStackSymbols)
-			})
-		} else {
-			post("1.1/statuses/update.json?status=\(urlEncodedText!)", parameters: nil, progress: nil, success: {
-				(task: URLSessionDataTask, response: Any?) in
-				
-			}, failure: {
-				(task: URLSessionDataTask?, error: Error) in
-				print("Tweet ID: \(urlEncodedText!)")
-				print(error.localizedDescription)
-				print(Thread.callStackSymbols)
-			})
+	func tweet(text: String) {
+		post("1.1/statuses/update.json", parameters: ["status": text], progress: nil, success: { (task: URLSessionDataTask!, response: Any?) -> Void in
+			print("Tweet successful!")
+		}) { (task: URLSessionDataTask?, error: Error!) in
+			print(error.localizedDescription)
+			print("Tweet failure!")
 		}
 	}
 	

@@ -109,6 +109,9 @@ class TweetDetailViewController: UIViewController {
 		if segue.identifier == "ReplySegue" {
 			let composeViewController = segue.destination as! ComposeViewController
 			
+			composeViewController.replyUserHandle = "@" + (tweet.user?.screenName)!
+			composeViewController.replyTweetId = tweet.id!
+			
 		} else if segue.identifier == "ProfileDetailSegue" {
 			let profileViewController = segue.destination as! ProfileViewController
 			profileViewController.user = tweet.user
